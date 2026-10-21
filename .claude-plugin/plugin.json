@@ -1,0 +1,6 @@
+{
+  "name": "trail",
+  "version": "0.1.0",
+  "description": "A quiet dash minimap of your prompts beside the transcript: hover to preview, click to jump back",
+  "types": "./types/index.d.ts"
+}
