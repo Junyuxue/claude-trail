@@ -10,6 +10,8 @@ const DASH = '─'
 // The map is as wide as its longest swell (5 cells, plus 1.5 active, plus 5 under the pointer).
 const MAP_CELLS = 13
 const JUMP = ' ↵ '
+// The tint behind the person's own prompts: a shade off the terminal's background, light or dark as the theme is.
+const PANE_OPEN = { id: PANE, title: 'Trail', columns: WIDTH, backgroundColor: 'userMessageBackground' }
 
 const marks = atom({ plugin: 'trail', key: 'marks' } as const, [] as Mark[])
 const active = atom({ plugin: 'trail', key: 'active' } as const, null as string | null)
@@ -63,13 +65,13 @@ export const register: Register = on => {
       name: 'trail',
       description: 'Show the prompt minimap beside the transcript',
     })
-    void $.ui.open({ id: PANE, title: 'Trail', columns: WIDTH })
+    void $.ui.open(PANE_OPEN)
 
     return next(e)
   })
 
   on('command.run', { command: 'trail' }, async $ => {
-    await $.ui.open({ id: PANE, title: 'Trail', columns: WIDTH })
+    await $.ui.open(PANE_OPEN)
 
     return { text: 'Trail opened.' }
   })
